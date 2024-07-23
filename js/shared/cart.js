@@ -1,11 +1,12 @@
+import { allProducts } from "../script.js";
 const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 const saveCartItems = (cartItems) => {
   localStorage.setItem("cart", JSON.stringify(cartItems));
 };
 
-export const addToCart = (product) => {
-  console.log("Adding to cart:", product);
-  const existItem = cartItems.find((item) => item.id === product.id);
+export const addToCart = (productId) => {
+  const product = allProducts.find((item) => item.id === productId);
+  const existItem = cartItems.find((item) => item.id === productId);
   if (existItem) {
     existItem.quantity += 1;
   } else {
@@ -42,7 +43,7 @@ const decreaseQuantity = (itemId) => {
   if (existItem.quantity > 1) {
     existItem.quantity -= 1;
   } else {
-    deleteItem(product.id);
+    deleteItem(itemId);
   }
   saveCartItems(cartItems);
   displayItems();
@@ -95,13 +96,13 @@ const displayItems = () => {
         </div>
             
       </div>
-      <div class="flex flex-col justify-center items-center md:gap-3 md:text-base text-[8px] col-span-2">
+      <div class="flex flex-col justify-center items-center md:gap-3 md:text-base text-[8px] col-span-2 ">
         <button onclick="increaseQuantity(${item.id})">
-          <i class="fa-solid fa-square-caret-up"></i>
+          <i class="fa-solid fa-square-caret-up hover:text-secondary"></i>
         </button>
         <button onclick="decreaseQuantity(${item.id})"
         >
-          <i class="fa-solid fa-square-caret-down"></i>
+          <i class="fa-solid fa-square-caret-down hover:text-secondary"></i>
         </button>
         
       </div>

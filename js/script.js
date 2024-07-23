@@ -17,12 +17,15 @@ drawerBtn.addEventListener("click", () => {
 const productsContainer = document.getElementById("products");
 const loading = document.getElementById("loading");
 
-const getAllProducts = () => {
+export let allProducts = [];
+
+export const getAllProducts = () => {
   productsContainer.innerHTML = "";
   handleRemoteRequest(
     "products",
     function (data) {
       const products = data.products;
+      allProducts = products;
       products.map((product, index) => {
         const productCard = document.createElement("div");
         productCard.innerHTML = card(index, product);
@@ -102,7 +105,6 @@ const searchProduct = (query) => {
     `products/search?q=${query}`,
     function (data) {
       const products = data.products;
-      console.log(products);
       products.map((product, index) => {
         const productCard = document.createElement("div");
         productCard.innerHTML = card(index, product);

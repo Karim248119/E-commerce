@@ -12,11 +12,9 @@ export const card = (index, product) => {
                     />
                   </div>
                   <div
-                    class="info flex flex-1 lg:p-5 p-2  flex-col justify-center items-center text-center lg:gap-2 gap-[2px]"
+                    class="info flex flex-1 lg:p-5   flex-col justify-center items-center text-center lg:gap-2 gap-[2px]"
                   >
-                    <h2 class="capitalize font-bold lg:text-lg lg:h-10 h-8 text-xs">${
-                      product.title
-                    }</h2>
+                    <h2 class="capitalize font-bold lg:text-lg lg:h-10 h-8 text-xs">${product.title}</h2>
                     <p class="lg:text-sm text-[8px] lg:h-20 h-14 overflow-hidden">
                       ${product.description}
                     </p>
@@ -31,7 +29,7 @@ export const card = (index, product) => {
                     <div class="w-full flex justify-between lg:text-base text-[8px]">
                       <p>$${product.price}</p>
                       <button class="bg-secondary text-white lg:p-2 p-1 py-[2px] lg:py-1 lg:rounded rounded-sm hover:bg-black"
-                      onclick='addToCart(${JSON.stringify(product)})'
+                      onclick='addToCart(${product.id})'
                       >
                         Add to cart
                       </button>
